@@ -50,5 +50,11 @@ public abstract class BaseDataAdapter<T> extends BaseAdapter {
 
     protected abstract void bindView(int position, T t);
 
+    public List<T> getList() {
+        return mList;
+    }
 
+    public void setList(List<T> list) {
+        mList = list;
+    }
 }
