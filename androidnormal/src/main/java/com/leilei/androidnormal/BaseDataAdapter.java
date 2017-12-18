@@ -41,14 +41,14 @@ public abstract class BaseDataAdapter<T> extends BaseAdapter {
         if (convertView == null) {
             convertView = newView(position, mList.get(position));
         }
-        bindView(position, mList.get(position));
+        bindView(position, convertView, mList.get(position));
 
         return convertView;
     }
 
     protected abstract View newView(int position, T t);
 
-    protected abstract void bindView(int position, T t);
+    protected abstract void bindView(int position, View view, T t);
 
     public List<T> getList() {
         return mList;
