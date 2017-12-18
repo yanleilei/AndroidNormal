@@ -57,4 +57,19 @@ public abstract class BaseDataAdapter<T> extends BaseAdapter {
     public void setList(List<T> list) {
         mList = list;
     }
+
+    public void addAll(List<T> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void add(T t) {
+        mList.add(t);
+        notifyDataSetChanged();
+    }
+
+    public void remove(T t) {
+        mList.remove(t);
+        notifyDataSetChanged();
+    }
 }
