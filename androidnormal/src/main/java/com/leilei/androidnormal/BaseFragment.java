@@ -38,11 +38,11 @@ public abstract class BaseFragment extends Fragment {
         return mView;
     }
 
-    private void initData() {
+    protected void initData() {
 
     }
 
-    private void initView() {
+    protected void initView() {
 
     }
 
