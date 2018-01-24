@@ -58,6 +58,46 @@ public abstract class AbstractNetTask implements NetTask, Callback {
         sendReque(builder.build());
     }
 
+    protected void putForm(SendMessage message) {
+        mTag = message.getTag();
+        Request.Builder builder = createNormal(message);
+        String url = message.getUrl();
+        if (!TextUtils.isEmpty(message.getAction())) {
+            url = url + message.getAction();
+        }
+        builder.url(url);
+        LogUtils.i(TAG, "POST URL=" + url);
+        if (message.getParam() != null && message.getParam().size() != 0) {
+            LogUtils.i(TAG, "POST FORM=" + message.getParam());
+            FormBody.Builder bodyBuilder = new FormBody.Builder();
+            for (Map.Entry<String, String> entry : message.getParam().entrySet()) {
+                bodyBuilder.add(entry.getKey(), entry.getValue());
+            }
+            builder.put(bodyBuilder.build());
+        }
+        sendReque(builder.build());
+    }
+
+    protected void deleteForm(SendMessage message) {
+        mTag = message.getTag();
+        Request.Builder builder = createNormal(message);
+        String url = message.getUrl();
+        if (!TextUtils.isEmpty(message.getAction())) {
+            url = url + message.getAction();
+        }
+        builder.url(url);
+        LogUtils.i(TAG, "POST URL=" + url);
+        if (message.getParam() != null && message.getParam().size() != 0) {
+            LogUtils.i(TAG, "POST FORM=" + message.getParam());
+            FormBody.Builder bodyBuilder = new FormBody.Builder();
+            for (Map.Entry<String, String> entry : message.getParam().entrySet()) {
+                bodyBuilder.add(entry.getKey(), entry.getValue());
+            }
+            builder.delete(bodyBuilder.build());
+        }
+        sendReque(builder.build());
+    }
+
     protected void get(SendMessage message) {
         mTag = message.getTag();
         Request.Builder builder = createNormal(message);
