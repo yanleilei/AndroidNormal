@@ -39,6 +39,7 @@ public abstract class AbstractNetTask implements NetTask, Callback {
     }
 
     protected void postForm(SendMessage message) {
+        mTag = message.getTag();
         Request.Builder builder = createNormal(message);
         String url = message.getUrl();
         if (!TextUtils.isEmpty(message.getAction())) {
@@ -58,8 +59,10 @@ public abstract class AbstractNetTask implements NetTask, Callback {
     }
 
     protected void get(SendMessage message) {
+        mTag = message.getTag();
         Request.Builder builder = createNormal(message);
         String url = message.getUrl();
+
         if (!TextUtils.isEmpty(message.getAction())) {
             url = url + message.getAction();
         }
