@@ -66,11 +66,14 @@ public abstract class AbstractNetTask implements NetTask, Callback {
         if (message.getParam() != null && message.getParam().size() != 0) {
             if (!url.contains("?")) {
                 url = url + "?";
+            } else {
+                url = url + "&";
             }
             StringBuilder sb = new StringBuilder(url);
             for (Map.Entry<String, String> value : message.getParam().entrySet()) {
-                sb.append(value.getKey() + "=" + value.getValue());
+                sb.append(value.getKey() + "=" + value.getValue() + "&");
             }
+            sb.deleteCharAt(sb.length() - 1);
             url = sb.toString();
         }
 

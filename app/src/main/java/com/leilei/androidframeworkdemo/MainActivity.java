@@ -21,6 +21,8 @@ public class MainActivity extends BaseActivity {
 
         TestNetTask task = new TestNetTask(this);
         SendMessage message = SendMessage.create().url("https://www.baidu.com");
+        message.param("a", "aaa");
+        message.param("b", "bbb");
         task.load(message);
         mNetTasks.add(task);
 
