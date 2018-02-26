@@ -48,6 +48,17 @@ public class UserManager<T> {
 
     }
 
+    public void save(T t) {
+        if (t == null) {
+            LogUtils.e(TAG, "Login Model is Null");
+            return;
+        }
+        mModel = t;
+        String user_message = new Gson().toJson(t);
+        SharedPreferenceUtils.saveString(FILE, KEY, user_message);
+
+    }
+
     public void logout() {
         SharedPreferenceUtils.saveBoolean(FILE, IS_LOGIN, false);
     }
