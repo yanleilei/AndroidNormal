@@ -54,6 +54,8 @@ public abstract class AbstractNetTask implements NetTask, Callback {
                 bodyBuilder.add(entry.getKey(), entry.getValue());
             }
             builder.post(bodyBuilder.build());
+        } else {
+            builder.post(null);
         }
         sendReque(builder.build());
     }
@@ -74,6 +76,8 @@ public abstract class AbstractNetTask implements NetTask, Callback {
                 bodyBuilder.add(entry.getKey(), entry.getValue());
             }
             builder.put(bodyBuilder.build());
+        } else {
+            builder.put(null);
         }
         sendReque(builder.build());
     }
@@ -94,6 +98,8 @@ public abstract class AbstractNetTask implements NetTask, Callback {
                 bodyBuilder.add(entry.getKey(), entry.getValue());
             }
             builder.delete(bodyBuilder.build());
+        } else {
+            builder.delete();
         }
         sendReque(builder.build());
     }
