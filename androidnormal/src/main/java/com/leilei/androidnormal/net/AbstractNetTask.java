@@ -27,6 +27,10 @@ public abstract class AbstractNetTask implements NetTask, Callback {
     protected NetWorkCallback mNetWorkCallback;
     private Call mCall;
 
+    public AbstractNetTask() {
+        this(null);
+    }
+
     public AbstractNetTask(NetWorkCallback callback) {
         mNetWorkCallback = callback;
         if (mOkhttpClient == null) {
@@ -36,6 +40,14 @@ public abstract class AbstractNetTask implements NetTask, Callback {
             builder.readTimeout(10, TimeUnit.SECONDS);
             mOkhttpClient = builder.build();
         }
+    }
+
+    public NetWorkCallback getNetWorkCallback() {
+        return mNetWorkCallback;
+    }
+
+    public void setNetWorkCallback(NetWorkCallback netWorkCallback) {
+        mNetWorkCallback = netWorkCallback;
     }
 
     protected void postForm(SendMessage message) {
@@ -160,7 +172,10 @@ public abstract class AbstractNetTask implements NetTask, Callback {
         } else {
             String message = "Exception:tag =" + mTag + "  HttpResponseCode=" + statusCode;
             LogUtils.e(TAG, message);
-            mNetWorkCallback.onNetError(mTag, new Exception(message));
+            if (!mCanceled && mNetWorkCallback != null) {
+                String result = response.body().string();
+                mNetWorkCallback.onServerError(mTag, statusCode, result);
+            }
         }
     }
 
