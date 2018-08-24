@@ -131,4 +131,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Permissi
     public void onNetError(int tag, Exception e) {
 
     }
+
+    @Override
+    public void onDataError(int tag, String message) {
+
+    }
+
+    @Override
+    public void onServerError(int tag, int httpCode, String result) {
+
+    }
 }
