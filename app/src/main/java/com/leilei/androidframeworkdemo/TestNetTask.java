@@ -15,7 +15,7 @@ public class TestNetTask extends AbstractNetTask {
         super(callback);
     }
 
-    @Override
+
     public void load(SendMessage message) {
         get(message);
     }

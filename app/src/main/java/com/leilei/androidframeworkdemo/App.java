@@ -2,6 +2,7 @@ package com.leilei.androidframeworkdemo;
 
 import android.app.Application;
 
+
 import com.leilei.androidlib.UncaughtExceptionHandler;
 import com.leilei.androidlib.Utils;
 import com.leilei.androidnormal.user.UserManager;
